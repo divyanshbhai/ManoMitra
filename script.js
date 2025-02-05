@@ -22,8 +22,8 @@ Guide users through CBT techniques like cognitive restructuring, thought journal
 Keep responses clear and very concise and very short.
 Encourage self-awareness and positive reinforcement.
 privious chats: "${getLastMessages(chatslog, 10)}"
-give responce in 2 section for example: "message responce from you ; mood status only positive, normal and negative"
-remember each saperate with the ';' semicolon for example "this is very intersting.;happy"`
+give responce in 2 section for example: "message responce from you <> mood status ('<i class="fa-solid fa-face-tired"></i>' , '<i class="fa-solid fa-face-tired"></i>', '<i class="fa-solid fa-face-surprise"></i>', '<i class="fa-solid fa-face-smile-beam"></i>', '<i class="fa-solid fa-face-sad-tear"></i>', '<i class="fa-solid fa-face-sad-cry"></i>', '<i class="fa-solid fa-face-meh"></i>', '<i class="fa-solid fa-face-laugh-beam"></i>', '<i class="fa-solid fa-face-frown-open"></i>', '<i class="fa-solid fa-face-frown"></i>', '<i class="fa-solid fa-face-angry"></i>') choose any one mood imoje"
+remember each saperate with the '<>'  for example "this is very intersting.<> <i class="fa-solid fa-face-tired"></i>"`
     let text = document.getElementById('userchat').value;
     if(text!=''){
         let chats = document.querySelector('.chats');
@@ -45,10 +45,11 @@ remember each saperate with the ';' semicolon for example "this is very intersti
                         </div>`;
         chats.append(botchat);
         chatslog.push(text);
+        document.getElementById('userchat').value='';
         scrollToBottom();
         let responce = await puter.ai.chat(prompt+', user message please answer it: '+text)
         let str = responce.message.content;
-        let bot = str.split(';')
+        let bot = str.split('<>')
         botchat.querySelector('.bot-content').innerHTML = `<p>${bot[0]}</p><button class="btn text-light audio-btn" onclick="playaudio(this);"><i class="fa-regular fa-circle-play"></i></button>`;
         console.log(bot[1])
         document.getElementById('status').innerHTML = `<b><u>${bot[1]}</u></b>`;
