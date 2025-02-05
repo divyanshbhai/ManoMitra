@@ -45,7 +45,6 @@ remember each saperate with the ';' semicolon for example "this is very intersti
                         </div>`;
         chats.append(botchat);
         chatslog.push(text);
-        document.getElementById('userchat').value ='';
         scrollToBottom();
         let responce = await puter.ai.chat(prompt+', user message please answer it: '+text)
         let str = responce.message.content;
